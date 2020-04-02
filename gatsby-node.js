@@ -147,3 +147,6 @@ exports.onCreateNode = ({ actions, getNodes }) => {
       });
     });
 };
+require('dotenv').config({
+  path: `.env.myown`
+})
