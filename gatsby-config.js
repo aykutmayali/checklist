@@ -1,9 +1,19 @@
 /* eslint-disable @typescript-eslint/camelcase, @typescript-eslint/no-var-requires */
-const dotenv = require('dotenv');
+// const dotenv =require('dotenv').config({ path: `.env.myown`});
 
-dotenv.config();
+// const dotenv = require('dotenv');
+// dotenv.config();
+// require("dotenv").config({
+//  path: `.env.${process.env.myown}`,
+// });
+
+// const dotenv = require('./.env.myown');
 
 const queries = require('./src/utils/algolia');
+
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 
 module.exports = {
   siteMetadata: {

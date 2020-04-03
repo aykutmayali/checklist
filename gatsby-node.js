@@ -4,6 +4,10 @@ const slug = require('slug');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
 
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
 
@@ -147,6 +151,3 @@ exports.onCreateNode = ({ actions, getNodes }) => {
       });
     });
 };
-require('dotenv').config({
-  path: `.env.myown`
-})
