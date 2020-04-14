@@ -36,20 +36,6 @@ jobs:
           name: Test
           command: yarn test
 
-  build:
-    executor: node
-    steps:
-      - checkout
-      - <<: *restore_cache
-      - <<: *install_node_modules
-      - run:
-          name: Build
-          command: yarn build
-      - persist_to_workspace:
-          root: ./
-          paths:
-            - public
-
   deploy:
     executor: node
     steps:
@@ -64,6 +50,22 @@ jobs:
       - run:
           name: Deploy to Netlify
           command: netlify deploy --dir=./public -p
+
+  build:
+    executor: node
+    steps:
+      - checkout
+      - <<: *restore_cache
+      - <<: *install_node_modules
+      - run:
+          name: Build
+          command: yarn build
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - public
+
+
 
 workflows:
   version: 2
