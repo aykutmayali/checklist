@@ -7,6 +7,7 @@ name: CI Build and Deploy to Gatsby every five minutes
 on:
   push:
     branches: [ master ]
+  pull_request:
     branches: [ master ]
   schedule:
     - cron: "*/10 * * * *"
