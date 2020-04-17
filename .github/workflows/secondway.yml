@@ -42,4 +42,4 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_SUBJEBILISIM }}
           SLACK_TITLE: 'Build'
-          SLACK_MESSAGE: 'Your build is completed!'
+          SLACK_MESSAGE: 'Build is completed!'
