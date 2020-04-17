@@ -40,6 +40,6 @@ jobs:
       - name: Slack Notification for Build
         uses: bryan-nice/slack-notification@master
         env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_SUBJEBİLİSİM }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_SUBJEBILISIM }}
           SLACK_TITLE: 'Build'
           SLACK_MESSAGE: 'Your build is completed!'
