@@ -5,10 +5,9 @@ name: CI Build and Deploy to Gatsby every five minutes
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
-  #push:
-    #branches: [ master ]
-  #pull_request:
-    #branches: [ master ]
+  push:
+    branches: [ master ]
+    branches: [ master ]
   schedule:
     - cron: "*/10 * * * *"
 
@@ -18,9 +17,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Slack Notification for Build
+      - uses: bryan-nice/slack-notification@master
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_SUBJEBILISIM }}
+          SLACK_TITLE: 'Build'
+          SLACK_MESSAGE: 'Build is completed!'
       # Check out the current repository code
       - uses: actions/checkout@v1
-      # 3. https://github.com/actions/setup-node#usage
+      # 3.https://github.com/actions/setup-node#usage
       - uses: actions/setup-node@v1
         with:
           node-version: "12.x"
@@ -35,4 +40,4 @@ jobs:
         with:
           # 5. "gatsby build" creates "public" folder, which is what we are deploying
           args: deploy --dir=public --prod
-          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
+          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]
