@@ -42,3 +42,13 @@ jobs:
           # 5. "gatsby build" creates "public" folder, which is what we are deploying
           args: deploy --dir=public --prod
           secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]
+<<<<<<< HEAD
+=======
+
+      - name: Slack Notification for Build
+        uses: bryan-nice/slack-notification@master
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_SUBJEBILISIM }}
+          SLACK_TITLE: 'Build'
+          SLACK_MESSAGE: 'Build is completed!'
+>>>>>>> 5eec52111b49254299c1d2d3958f6eb8dbf429d0
