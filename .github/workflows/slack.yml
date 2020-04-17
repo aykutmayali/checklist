@@ -10,5 +10,3 @@ jobs:
       uses: rtCamp/action-slack-notify@v2.0.0
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_SUBJEBİLİSİM }
-        SLACK_TITLE: 'Build'
-        SLACK_MESSAGE: 'Build is completed!'
