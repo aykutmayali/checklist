@@ -1,5 +1,5 @@
 ---
-title: A Remote Day of Atolye15
+title: A Remote Day of Subje
 category: "General"
 date: "2020-03-21"
 tags: ['corona-virus', 'remote', 'covid-19']
