@@ -1,5 +1,5 @@
 ---
-title: Organizing Atolye15 Talks
+title: Organizing Subje Talks
 category: Marketing
 date: "2020-03-03"
 tags: ['meetup', 'talks']
