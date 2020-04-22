@@ -5,8 +5,9 @@ name: Build and deploy Node.js app to Azure Web App - checklist-subje
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build-and-deploy:
