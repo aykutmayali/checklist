@@ -23,6 +23,17 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+     # Connect to Azure Container registry (ACR)
+    - uses: azure/docker-login@v1 
+      with:
+        #login-server: acraltug.azurecr.io
+        login-server: subjerepo.azurecr.io
+        username: ${{ secrets.REGISTRY_USERNAME_SUBJE }} 
+        password: ${{ secrets.REGISTRY_PASSWORD_SUBJE }}
+    # Docker build and push to a Azure Container registry (ACR)
+    - run: |
+       docker build . -t subjerepo.azurecr.io/k8sdemo:${{ github.run_id }}
+       docker push subjerepo.azurecr.io/k8sdemo:${{ github.run_id }}
   
     - name: Install dependencies
       run: |
