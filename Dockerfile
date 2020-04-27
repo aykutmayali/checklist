@@ -1,7 +1,7 @@
 FROM node:alpine
 
 # Also exposing VSCode debug ports
-#EXPOSE 8000 9929 9230
+EXPOSE 8000 9929 9230
 
 #RUN \
   #apk add --no-cache python make g++ && \
