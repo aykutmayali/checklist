@@ -23,6 +23,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
      # Connect to Azure Container registry (ACR)
     - uses: azure/docker-login@v1 
       with:
@@ -43,9 +48,13 @@ jobs:
       run: gatsby build
 
     - name: 'Deploy to Azure Web App'
-      uses: azure/webapps-deploy@v1
+      #uses: azure/webapps-deploy@v1
+      #with:
+        #app-name: 'checklist-subje-docker'
+        #slot-name: 'production'
+        #publish-profile: ${{ secrets.AzureAppService_PublishProfile_dfee26a01c034f6080a3b36a4bfc19d8 }}
+        #package: .
+    - uses: azure/webapps-deploy@v2
       with:
-        app-name: 'checklist-subje'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_dfee26a01c034f6080a3b36a4bfc19d8 }}
-        package: .
+        app-name: 'checklist-subje-docker'
+        images: 'subjerepo.azurecr.io/k8sdemo:${{ github.run_id }}'
