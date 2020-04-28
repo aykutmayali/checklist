@@ -20,8 +20,8 @@ jobs:
     steps:
     - name: Set git to use LF
       run: |
-        git config core.autocrlf false
-    #git config core.eol lf
+        git config --global core.autocrlf false
+       # git config --global core.eol lf
 
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
