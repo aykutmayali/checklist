@@ -46,7 +46,32 @@ jobs:
        docker push subjerepo.azurecr.io/k8sdemo:${{ github.run_id }}
     
     # docker run -d -p 8000:8000 --name store checklist-subje-docker:1.0.1
-  
+    # AKS
+    - uses: azure/aks-set-context@v1 
+      with:
+        creds: '${{ secrets.AZURE_CREDENTIALS_SUBJE }}' 
+        cluster-name: subjeakscluster
+        resource-group: Subje-AKS-RG
+    # Create imagepullsecret for Azure Container registry (ACR)
+    - uses: azure/k8s-create-secret@v1 
+      with:
+        container-registry-url: subjerepo.azurecr.io
+        container-registry-username: ${{ secrets.REGISTRY_USERNAME_SUBJE }} 
+        container-registry-password: ${{ secrets.REGISTRY_PASSWORD_SUBJE }}
+        secret-name: acr-secret
+        namespace: checklistdemo
+    # Deploy app to AKS
+    - uses: azure/k8s-deploy@v1 
+      with:
+        namespace: checklistdemo
+        manifests: |
+          kubernetes/checklistdeploy.yaml
+        images: |
+          subjerepo.azurecr.io/k8sdemo:${{ github.run_id }} 
+        imagepullsecrets: |
+          acr-secret
+          namespace: checklistdemo
+
     - name: Install dependencies
       run: |
         npm install
