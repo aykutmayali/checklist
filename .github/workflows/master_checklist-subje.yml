@@ -36,7 +36,6 @@ jobs:
      # Connect to Azure Container registry (ACR)
     - uses: azure/docker-login@v1 
       with:
-        #login-server: acraltug.azurecr.io
         login-server: subjerepo.azurecr.io
         username: ${{ secrets.REGISTRY_USERNAME_SUBJE }} 
         password: ${{ secrets.REGISTRY_PASSWORD_SUBJE }}
@@ -49,7 +48,7 @@ jobs:
     # AKS
     - uses: azure/aks-set-context@v1 
       with:
-        creds: '${{ secrets.AZURE_CREDENTIALS_SUBJE }}' 
+        creds: '${{ secrets.AZURE_CREDENTIALS }}' 
         cluster-name: subjeakscluster
         resource-group: Subje-AKS-RG
     # Create imagepullsecret for Azure Container registry (ACR)
