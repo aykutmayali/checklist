@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: softwareone-svc
+  name: checklist-svc
   namespace: checklistdemo
   labels: 
-    name: softwareone-svc
+    name: checklist-svc
 spec: 
   type: LoadBalancer
   ports:
@@ -12,26 +12,26 @@ spec:
     port: 3000
     targetPort: 3000
   selector:
-    name: softwareone-app
+    name: checklist-app
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata: 
-  name: softwareone-deploy
+  name: checklist-deploy
   namespace: checklistdemo
   labels: 
-    name: softwareone-app
+    name: checklist-app
 spec: 
   replicas: 1
   template: 
     metadata:
       labels: 
-        name: softwareone-app
+        name: checklist-app
     spec:
       imagePullSecrets:
         - name: acr-secret
       containers:
-      - image: subjerepo.azurecr.io/k8sdemo:${{ github.run_id }} 
+      - image: subjerepo.azurecr.io/checklistsubjedocker45ca:${{ github.run_id }} 
         name: checklist-container
         resources: 
           requests:
@@ -42,6 +42,6 @@ spec:
           value: testEnv
         ports:
         - containerPort: 3000
-          name: softwareone-app
+          name: checklist-app
         imagePullPolicy: Always
       restartPolicy: Always
