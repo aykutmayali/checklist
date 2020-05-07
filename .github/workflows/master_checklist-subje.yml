@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [10.x]
 
     steps:
     - name: Set git to use LF
@@ -91,3 +91,9 @@ jobs:
       with:
         app-name: 'checklist-subje-docker'
         images: 'subjerepo.azurecr.io/checklistsubjedocker45ca:${{ github.run_id }}'
+    - name: 'Slack Notification'
+      uses: bryan-nice/slack-notification@master
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_SUBJEBILIM }}
+        SLACK_TITLE: 'Build'
+        SLACK_MESSAGE: 'Web App is completed!'

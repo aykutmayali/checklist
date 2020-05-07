@@ -55,8 +55,8 @@ COPY .env .
 
 EXPOSE 8000
 
-#CMD ["gatsby", "develop", "-H", "0.0.0.0"]
-CMD ["yarn", "develop", "-H", "0.0.0.0"]
+CMD ["gatsby", "develop", "-H", "0.0.0.0"]
+#CMD ["yarn", "develop", "-H", "0.0.0.0"]
 
 #4.way--------
 
