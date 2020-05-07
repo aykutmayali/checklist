@@ -41,8 +41,8 @@ jobs:
         password: ${{ secrets.REGISTRY_PASSWORD_SUBJE }}
     # Docker build and push to a Azure Container registry (ACR)
     - run: |
-       docker build . -t subjerepo.azurecr.io/k8sdemo:${{ github.run_id }}
-       docker push subjerepo.azurecr.io/k8sdemo:${{ github.run_id }}
+       docker build . -t subjerepo.azurecr.io/checklistsubjedocker45ca:${{ github.run_id }}
+       docker push subjerepo.azurecr.io/checklistsubjedocker45ca:${{ github.run_id }}
     
     # docker run -d -p 8000:8000 --name store checklist-subje-docker:1.0.1
     # AKS
@@ -66,7 +66,7 @@ jobs:
         manifests: |
           kubernetes/checklistdeploy.yaml
         images: |
-          subjerepo.azurecr.io/k8sdemo:${{ github.run_id }} 
+          subjerepo.azurecr.io/checklistsubjedocker45ca:${{ github.run_id }} 
         imagepullsecrets: |
           acr-secret
           namespace: checklistdemo
@@ -90,4 +90,4 @@ jobs:
       uses: azure/webapps-container-deploy@v1
       with:
         app-name: 'checklist-subje-docker'
-        images: 'subjerepo.azurecr.io/k8sdemo:${{ github.run_id }}'
+        images: 'subjerepo.azurecr.io/checklistsubjedocker45ca:${{ github.run_id }}'
